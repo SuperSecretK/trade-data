@@ -1,19 +1,6 @@
 const axios = require('axios');
 
 const parseHistory = async (data) => {
-    // let date = [];
-    // await data['t'].forEach(d => {
-    //   date.push(new Date(d * 1000));
-    // });
-
-    // return {
-    //   closeList: data['c'],
-    //   openList: data['o'],
-    //   highList: data['h'],
-    //   lowList: data['l'],
-    //   dateList: date
-    // }
-
     let res = [];
     await data['t'].forEach((d, index) => {
         res.push({
@@ -31,7 +18,6 @@ const _getRoundData = async (symbol, onDate, backRange) => {
     const from = Math.floor(past.setDate(today.getDate() - parseInt(backRange, 10)) / 1000);
     const to = Math.floor(today.getTime() / 1000);
   
-    // const url = `https://tvc4.investing.com/78675672b5d8b9dd3a47b561a9410d0b/1712503480/52/52/110/history?symbol=41063&resolution=D&from=${from}&to=${to}`
     const url = `https://dchart-api.vndirect.com.vn/dchart/history?resolution=D&symbol=${symbol}&from=${from}&to=${to}`;
     console.log(url);
     const response = await axios.get(url);
@@ -73,4 +59,6 @@ const _getPriceHistory = async (symbol, date, days) => {
     return result;
 }
 
-_getPriceHistory('VNINDEX', '2017-08-01', 1000);
+
+
+// _getPriceHistory('VNINDEX', '2017-08-01', 1000);
